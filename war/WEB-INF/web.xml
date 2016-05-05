@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>Weaved</servlet-name>
+		<servlet-class>com.brillo.weaved.WeavedServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Weaved</servlet-name>
+		<url-pattern>/weaved</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ExServlet</servlet-name>
+		<servlet-class>com.brillo.weaved.ExServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ExServlet</servlet-name>
+		<url-pattern>/ExServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UserHistoryServlet</servlet-name>
+		<servlet-class>com.brillo.weaved.UserHistoryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserHistoryServlet</servlet-name>
+		<url-pattern>/UserHistoryServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DeleteHistoryServlet</servlet-name>
+		<servlet-class>com.brillo.weaved.DeleteHistoryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteHistoryServlet</servlet-name>
+		<url-pattern>/DeleteHistoryServlet</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

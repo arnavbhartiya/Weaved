@@ -1,0 +1,158 @@
+
+body {
+  background: #F5F5F5;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+paper-toolbar.tall{
+      background-color: #0021A5;
+}
+
+paper-toolbar.drawer{
+      background-color: #FA4616;
+}
+
+paper-button{
+	background-color: #FA4616;
+}
+
+paper-button.appHistory{
+	background-color: #FA4616;
+	color: #ffffff;
+}
+
+
+paper-button.eventId{
+	margin-left:none;
+	background-color: #FA4616;
+	color: #ffffff;
+}
+
+paper-button.titleButton{
+	background-color: #0021A5;
+	height: 65;
+	width: 65;
+	border-radius: 50%;
+}
+
+.paper-menu-0 .selectable-content.paper-menu > .iron-selected {
+    color: #FA4616;
+}
+
+ paper-card.horizontal{
+   background-color : white;
+   padding : 35px;
+   margin-left : 100px;
+   margin-top: 50px;
+   min-width: 200px;
+ }
+ 
+ paper-card.horiz{
+   background-color : white;
+   padding : 10px;
+   margin-left : 30px;
+   margin-top: 50px;
+ }
+ 
+ paper-input{
+ 	width : 100px;
+ }
+
+#button{
+	position:relative;
+	margin-top:30px;
+}
+
+#afterSignInShowPP {
+    border-radius: 50%;
+}
+
+#weavedLogo {
+    border-radius: 50%;
+}
+
+#afterSignIn{
+	position:relative;
+	margin-left:15px;
+}
+
+#statusImage{
+	position:relative;
+	margin-left:15px;
+}
+
+#beta{
+	font-size: 18px;
+	color: #AAAAAA;
+	font-style:italic;
+	padding-left: 4px;
+}
+
+#editorImage{
+	border-radius: 50%;
+}
+
+
+
+.app-name{
+	position:relative;
+	margin-left:15px;
+}
+ul.welcomeScreen{
+  margin: 10px 0 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 30em;
+  animation: type 4s steps(60, end); 
+}
+
+ul.welcomeScreen :nth-child(2){
+  animation: type2 8s steps(60, end);
+}
+
+p a{
+  color: lime;
+  text-decoration: none;
+}
+
+/* span{
+  animation: blink 1s infinite;
+} */
+
+@keyframes type{ 
+  from { width: 0; } 
+} 
+
+@keyframes type2{
+  0%{width: 0;}
+  50%{width: 0;}
+  100%{ width: 100; } 
+} 
+
+@keyframes blink{
+  to{opacity: .0;}
+}
+
+::selection{
+  background: black;
+}
+
+#deviceStatus{
+	font-size: 16px;
+	color: #AAAAAA;
+	font-style:italic;
+	padding-left: 4px;
+}
+
+#deviceId{
+	font-size: 14px;
+	color: #408080;
+	font-style:italic;
+}
+
+#deviceOwner{
+	position: relative;
+	margin-left: 200px;
+}
+

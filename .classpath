@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/AMEYA/Downloads/mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AMEYA/Downloads/clouddevices_java_client_library/clouddevices/libs/google-api-client-1.19.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AMEYA/Downloads/clouddevices_java_client_library/clouddevices/libs/google-http-client-1.19.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AMEYA/Downloads/clouddevices_java_client_library/clouddevices/libs/google-http-client-jackson2-1.19.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AMEYA/Downloads/clouddevices_java_client_library/clouddevices/libs/google-oauth-client-1.19.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AMEYA/Downloads/clouddevices_java_client_library/clouddevices/google-api-services-clouddevices-v1-rev20140812-1.19.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AMEYA/workspace/Weaved/war/WEB-INF/lib/json-simple.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

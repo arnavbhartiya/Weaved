@@ -1,0 +1,467 @@
+<!doctype html>
+
+<html itemscope itemtype="http://schema.org/Article"  lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Polymer Starter Kit">
+  <meta name="google-signin-client_id" content="309435708548-1gdb132v9q00p53kbs7eot6i7abtt0n1.apps.googleusercontent.com">
+  <title>Weave Development Environment</title>
+
+  <!-- Place favicon.ico in the `app/` directory -->
+
+  <!-- Chrome for Android theme color -->
+  <meta name="theme-color" content="#2E3AA1">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Tile color for Win8 -->
+  <meta name="msapplication-TileColor" content="#3372DF">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="PSK">
+  <link rel="icon" sizes="192x192" href="logo.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+  <!-- Tile icon for Win8 (144x144) -->
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild-->
+  
+  
+  <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- endbuild -->
+  <script src="scripts/weave-discovery.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+  <!-- Because this project uses vulcanize this should be your only html import
+       in this file. All other imports should go in elements.html -->
+  <link rel="import" href="elements/elements.html">
+
+  <!-- For shared styles, shared-styles.html import in elements.html -->
+  <style is="custom-style" include="shared-styles">
+  paper-button.custom {
+	   --paper-button-flat-keyboard-focus: {
+	   
+	     color: white !important;
+	   };
+	   --paper-button-raised-keyboard-focus: {
+	   
+	     color: white !important;
+	   };
+	 }
+	 paper-button.custom:hover {
+	   background-color: #FA4616;
+	 }
+	 paper-button.pink {
+	   
+	
+	 }
+	 paper-button.indigo {
+	   background-color: #FA4616;
+	   color: white;
+	   --paper-button-raised-keyboard-focus: {
+	    
+	     color: white !important;
+	   };
+	 }
+	 paper-button.green {
+	   background-color: var(--paper-green-500);
+	   color: white;
+	 }
+	 paper-button.green[active] {
+	   background-color: var(--paper-red-500);
+	 }
+	 paper-button.disabled {
+	   color: white;
+	 }
+ }
+ 
+
+ </style>
+
+</head>
+
+<body unresolved>
+  <span id="browser-sync-binding"></span>
+  <template is="dom-bind" id="app">
+    <paper-drawer-panel id="paperDrawerPanel">
+      <!-- Drawer Scroll Header Panel -->
+      <paper-scroll-header-panel drawer fixed>
+
+        <!-- Drawer Toolbar -->
+        <paper-toolbar class="drawer">
+          <div ><img src="" id="afterSignInShowPP" alt="" width="45" height="45"></div>
+          <span id="afterSignIn"></span>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+        <paper-menu attr-for-selected="data-route" selected="[[route]]">
+          <a data-route="home" href="{{baseUrl}}">
+            <iron-icon icon="home"></iron-icon>
+            <span>Home</span>
+          </a>
+
+          <paper-submenu attr-for-selected="data-route" selected="[[route]]">
+
+          <paper-item class="menu-trigger"><iron-icon icon="icons:view-list"></iron-icon><span>Your Devices <span id="totalDevices"></span></span></paper-item>
+			
+			
+          <paper-menu class="menu-content">
+          <template is="dom-repeat" items="{{devices}}" as="device">
+            	<a draggable=true href="{{baseUrl}}users/[[device]]" id="drag-elements">
+            	<span style="display:none">[[device.id]]</span>
+	            	<paper-item >
+	   					<div class="ui-widget-content">[[device.name]] - <span><em>[[device.connectionStatus]]</em></span></div>
+	   				</paper-item>
+            	</a>
+          </template>
+          </paper-menu>
+          </paper-submenu>
+			
+          <a data-route="editor" href="{{baseUrl}}editor">
+            <iron-icon icon="icons:assignment"></iron-icon>
+            <span>Editor</span>
+          </a>
+
+		  <a data-route="appHistory" href="{{baseUrl}}appHistory">
+            <iron-icon icon="icons:history"></iron-icon>
+            <span>Commands History</span>
+          </a>
+          
+          <a data-route="exampleSection" href="{{baseUrl}}exampleSection">
+            <iron-icon icon="icons:explore"></iron-icon>
+            <span>Example Section</span>
+          </a>
+          
+          <a data-route="contact" href="{{baseUrl}}contact">
+            <iron-icon icon="mail"></iron-icon>
+            <span>The Tribe !!</span>
+          </a>
+          
+        </paper-menu>
+      </paper-scroll-header-panel>
+
+      <!-- Main Area -->
+      <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar" class="tall">
+          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+
+          <span class="space"></span>
+
+          <!-- Toolbar icons -->
+          <paper-button toggles raised on-click="authorizeNewDevices">Authorize Devices</paper-button>
+<!--          <google-signin theme="dark"  -->
+<!--           client-id="309435708548-1gdb132v9q00p53kbs7eot6i7abtt0n1.apps.googleusercontent.com" -->
+<!--           scopes="https://www.googleapis.com/auth/weave.app" offline=true> -->
+<!--           </google-signin>  -->
+		
+			<!-- <a href="https://accounts.google.com/o/oauth2/auth?client_id=309435708548-fsvfu060n29531ufr5qqqgf7t2jhhvan.apps.googleusercontent.com&redirect_uri=http://localhost:8080/AmeyaWeave/ExServlet&response_type=code&scope=https://www.googleapis.com/auth/weave.app">
+			Log in</a> -->
+			
+<!-- 			<paper-button toggles raised on-click="googleBackendSignin">Google Signin</paper-button> -->
+			
+			<div class="g-signin2" data-onsuccess="onSignIn"></div>
+			<paper-button onclick="signOut();">Sign out</paper-button>
+			
+          <!-- Application name -->
+          <div class="middle middle-container">
+          	<paper-button class="titleButton" onclick="homeRedirect()"><img src = "logo.png" id = "weavedLogo" height="80" width="80"></paper-button>
+            <div class="app-name">Weaved<sup><span id="beta">Alpha</span></sup></div>
+          </div>
+
+          <!-- Application sub title -->
+          <div class="bottom bottom-container">
+            <div class="bottom-title">Weave Development Environment</div>
+          </div>
+        </paper-toolbar>
+
+        <!-- Main Content -->
+        <div class="content">
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+            <section data-route="home">
+             
+              <h1>Welcome! <span id = "name"></span></h1>
+<!--                 <h1 id="license">What does <b> <i>Weaved </i></b> weave!</h1>
+                <p>Weaved is a simple development environment built upon Weave.
+					Being built on <i>Weave</i>,<b> <i>Weaved </i></b>empowers users to:</p>
+					<ul style="list-style-type:disc" class="welcomeScreen">
+					  <li>Monitor the present status of their devices.</li>
+					  <li>Update devices by writing simple codes.</li>
+					  <li>Create Event, Condition, Action (ECA) based applications.</li>
+					</ul>    
+              </paper-material>
+              <paper-material elevation="5"> </paper-material> -->
+              
+                             <paper-card class="horiz" >
+              <a data-route="editor" href="{{baseUrl}}editor"><img id="editorImage" alt="The Editor." src="/images/touch/editor1.jpg" hight=286 width=286></a>
+            	<div class="card-content">
+                 <center><b> Build your Applications </b></center>
+                 </div>
+                
+               </paper-card>
+               
+              <paper-card class="horiz" >
+              <a data-route="editor" href="{{baseUrl}}users/user-info"><img id="editorImage" alt="Devices." src="/images/touch/devices.jpg" hight=150 width=234></a>
+            	<div class="card-content">
+                  <center><b> Access your Device Info </b></center>
+                 </div>
+                
+               </paper-card>
+               
+
+                 <paper-card class="horiz">
+              <a data-route="editor" href="{{baseUrl}}appHistory"><img id="editorImage" alt="The Editor." src="/images/touch/history.jpg" hight=253 width=253></a>
+            	<div class="card-content">
+                  <center><b> Manage your Commands History </b></center>
+                 </div>
+             
+               </paper-card>
+               
+               <paper-material>
+               	<google-youtube
+					  video-id="x3WHoiuuC7I"
+					  height="300px"
+					  width="480px"
+					  rel="0"
+					  start="5">
+				</google-youtube>
+               </paper-material>
+            </section>
+
+            <section data-route="user-info">
+               	<template is="dom-repeat" items="{{devices}}" as="device">
+               		<paper-material elevation="2" animated id="a1">
+               			<h3>[[device.name]] - <span id="deviceStatus"><em>[[device.connectionStatus]]</em></span></h3>
+               			<p id="deviceId">Device Id : <em>[[device.id]]</em><span id="deviceOwner">Device Owner : <em>[[device.owner]]</em></span></p>
+               		</paper-material>
+               	</template>
+            </section>
+            
+
+           <section data-route="contact">
+           	<h2><center>
+           		Behind the Scenes!
+           		</center>
+           	</h2>
+
+                 <paper-card  class="horizontal"  >
+                 <img src="http://s1.postimg.org/z7wjhnw73/ameya.jpg">
+                 <div class="card-content">
+                  Ameya Chikodi
+                 </div>
+                 <div class="card-actions">
+                 <paper-contact-mobile>+1-352-745-9980</paper-contact-mobile>
+                 <paper-contact-linkedin>https://www.linkedin.com/in/ameya-chikodi-b5baa976</paper-contact-linkedin>
+
+               <!--  <iron-icon icon="social:public"></iron-icon> -->
+                <!--    <paper-button ><a href="https://in.linkedin.com/in/rohanpansare">Linkedin </a></paper-button> -->
+                 </div>
+               </paper-card>
+
+                 <paper-card  class="horizontal"  >
+                 <img src="http://s4.postimg.org/gd3vk703h/arnav.jpg">
+                 <div class="card-content">
+                 Arnav Bhartiya
+                 </div>
+                 <div class="card-actions">
+                <!-- <iron-icon icon="social:public"></iron-icon> -->
+                <paper-contact-mobile>+1-352-281-5818</paper-contact-mobile>
+                    <paper-contact-linkedin>https://www.linkedin.com/in/arnavbhartiya</paper-contact-linkedin>
+                 </div>
+               </paper-card>
+
+               <paper-card  class="horizontal"  >
+                 <img src="http://s1.postimg.org/wydh40tkv/rohan.jpg">
+                 <div class="card-content">
+                  Rohan Pansare
+                 </div>
+                 <div class="card-actions">
+                <!-- <iron-icon icon="social:public"></iron-icon> -->
+                <paper-contact-mobile>+1-724-467-2008</paper-contact-mobile>
+                     <paper-contact-linkedin>https://in.linkedin.com/in/rohanpansare</paper-contact-linkedin>
+                 </div>
+               </paper-card>
+
+               <paper-card  class="horizontal"  >
+                 <img src="http://s4.postimg.org/4spwu60u5/Ritika.jpg">
+                 <div class="card-content">
+                 Ritika Ahuja
+                 </div>
+                 <div class="card-actions">
+                <!-- <iron-icon icon="social:public"></iron-icon> -->
+                <paper-contact-mobile>+1-949-247-1358</paper-contact-mobile>
+                     <paper-contact-linkedin>https://www.linkedin.com/in/ritika7ahuja</paper-contact-linkedin>
+                 </div>
+               </paper-card>
+
+               <paper-card  class="horizontal"  >
+                 <img src="http://s31.postimg.org/ce6stw3mj/diku.jpg">
+                 <div class="card-content">
+                  Diganta Bharali
+                  
+                 </div>
+                 <div class="card-actions">
+                <paper-contact-mobile>+1-352-745-9760</paper-contact-mobile>
+             <paper-contact-linkedin>https://www.linkedin.com/in/diganta-bharali-6564ba62</paper-contact-linkedin>
+                 </div>
+               </paper-card>
+
+           </section>
+
+            <section data-route="editor">
+	         
+	            <h2 ><center>
+	           		Editor
+	           		</center>
+	           	</h2>
+	         
+             <paper-material elevation="1" id= 'runButton' > 
+				<div id="drop-target">
+           		  	<ace-widget
+						id="editor1" initial-focus theme="ace/theme/monokai"
+						mode="ace/mode/json" softtabs="true" wrap="true"> 
+{ 
+    "Event": {
+      "DeviceName":"",
+      "DeviceId": "",
+      "Type": ""
+    },
+    "Condition": "",
+    "Action" : {
+        "DeviceName" : "",
+        "DeviceId": "",
+        "Command": "Set",
+        "LED": "1",
+        "State": "on"
+    }
+}					
+				 	</ace-widget>
+				 </div> 
+			 <paper-button id="button" raised class="custom indigo" onclick="runDeviceCommands()" value="Refresh Page">Run</paper-button> 
+			 </paper-material>            
+           <paper-material>
+           		<center><h3>Output Console</h3></center>
+           		<p id="result"></p>
+           </paper-material>
+           </section>
+           
+           
+           <section data-route="appHistory">
+ 
+           			<center>
+           			<h2>Commands History</h2>
+           			</center>
+
+           		<paper-material >
+           			<p id="response"></p>
+           			<paper-button class="appHistory" toggles raised onclick="populateHistory()">Retrieve Command history</paper-button>
+
+           		</paper-material>
+           		
+           		<paper-material>
+           			<p id="deleteResponse"></p>
+					<paper-input id="eventId" label="Entry Id goes here" type="number" width= 20 required></paper-input>
+           			<paper-button class="eventId" toggles raised onclick="deleteHistory()">Delete</paper-button>           			
+           		</paper-material>
+           </section>
+           
+           <section data-route="exampleSection">
+ 
+           			<center>
+           			<h2>Example Section</h2>
+           			</center>
+           			
+           			<paper-material>
+           			<h3>Example - Condition</h3>
+				<ace-widget
+						 initial-focus theme="ace/theme/monokai"
+						mode="ace/mode/json" softtabs="true" wrap="true" readOnly="true"> 
+{ 
+    "Event": {
+      "DeviceName":"LED",
+      "DeviceId": "38xxxxxx-xxxx-xxxx-xxxx-xxxxxxef",
+      "Type" : "Condition" 
+    },
+    "Condition": [false,true,true],
+    "Action" : {
+        "DeviceName" : "LED",
+        "DeviceId": "8axxxxxx-xxxx-xxxx-xxxx-xxxxxx16",
+        "Command": "Set",
+        "LED": "2",
+        "State": "on"
+    }
+}					
+				 	</ace-widget>
+				 	</paper-material>
+				 	
+				 	<paper-material>
+           			<h3>Example - Update</h3>
+				<ace-widget
+						 initial-focus theme="ace/theme/monokai"
+						mode="ace/mode/json" softtabs="true" wrap="true" readOnly="true"> 
+{ 
+    "Event": {
+       "DeviceName":"LED",
+      "DeviceId": "38xxxxxx-xxxx-xxxx-xxxx-xxxxxxef",
+      "Type": "Update"
+    },
+   "Update":{
+       "LEDnumber":"1",
+       "State":"true"
+   }
+}
+				
+				 	</ace-widget>
+				 	</paper-material>
+           </section>
+          </iron-pages>
+        </div>
+      </paper-scroll-header-panel>
+    </paper-drawer-panel>
+
+    <iron-ajax
+          url="https://www.googleapis.com/weave/v1/authorizedApps/createAppAuthenticationToken"
+          with-credentials
+          handle-as="json"
+          method="POST"
+          on-response="ajaxHandler"
+          id="ajax"></iron-ajax>
+    <paper-toast id="toast">
+      <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+    </paper-toast>
+
+  </template>
+
+  <!-- build:js scripts/app.js -->
+  <!-- <script src="scripts/app.js"></script> -->
+  <script src="scripts/demo.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="https://apis.google.com/js/client.js?onload=gapiLoaded"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+<!--     <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script> -->
+  <!-- endbuild-->
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+  </script>
+  
+ 
+</body>
+
+</html>

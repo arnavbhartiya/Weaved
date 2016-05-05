@@ -1,0 +1,26 @@
+<!doctype html>
+<link rel="import" href="../paper-styles/paper-styles.html">
+
+<dom-module id="paper-contact-shared-styles">
+	<template>
+		<style>
+			:host {
+				@apply(--layout-vertical);
+			}
+
+			.item {
+				position: relative;
+				cursor: pointer;
+			}
+
+			.icon {
+				color: var(--disabled-text-color);
+			}
+
+			.text {
+				white-space: pre-wrap;
+				@apply(--paper-font-body1);
+			}
+		</style>
+	</template>
+</dom-module>
