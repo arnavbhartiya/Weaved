@@ -8,4 +8,4 @@ src="https://youtu.be/x3WHoiuuC7I">
 </iframe>
 [![ScreenShot](http://i.imgur.com/WE8w2Tv.jpg)](https://youtu.be/x3WHoiuuC7I)
 
-[![ScreenShot](http://i.imgur.com/6TIbdds.jpg)]
+![ScreenShot](http://i.imgur.com/6TIbdds.jpg)
