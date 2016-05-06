@@ -6,4 +6,4 @@ Research Award Pilot. Developers can create customised applications and then pro
 <iframe width="420" height="315"
 src="https://youtu.be/x3WHoiuuC7I">
 </iframe>
-[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://youtu.be/x3WHoiuuC7I)
+[![ScreenShot](http://imgur.com/WE8w2Tv)](https://youtu.be/x3WHoiuuC7I)
